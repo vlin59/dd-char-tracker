@@ -1,14 +1,17 @@
 var express = require('express');
-var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
+var bodyParser = require('body-parser');
 
 
 var env = process.env.NODE_ENV = process.env.NODE_ENV || 'development';
 
 var app = express();
 
+app.use(bodyParser.json())
+app.use(express.static('./client/'))
+
 //database
-mongoose.connect('mongodb://localhost/dndchartracker');
+mongoose.connect('mongodb://localhost/random');
 
 var db = mongoose.connection;
 
@@ -18,21 +21,30 @@ db.once('open', function (){
 });
 
 //db schema
+var UserSchema = new mongoose.Schema({user : String});
 
-
-
-
+var User = mongoose.model('User', UserSchema);
 
 //routes
-app.get('*', function (req,res){
+app.get('/', function (req,res){
 
-  res.send('Hello from Server!');
+  res.render('index')
+
 });
 
 app.post('/', function (req,res){
+  var user = req.body.user;
+  res.send(user);
 
-  res.send('Hello from Server!');
+  // User.find({},function (err,user){
+  //   console.log(err, user);
+  //   res.send(user);
+  // })
+
 });
+
+
+
 
 
 

@@ -1,0 +1,19 @@
+{
+  "name": "dndchartracker",
+  "description": "Dungeons & Dragons Character tracker",
+  "main": "index.js",
+  "authors": [
+    "Victor Lin"
+  ],
+  "license": "ISC",
+  "homepage": "",
+  "private": true,
+  "dependencies": {
+    "jquery": "^3.1.0",
+    "angular": "^1.5.7",
+    "angular-resource": "^1.5.7",
+    "angular-route": "^1.5.7",
+    "toastr": "^2.1.2",
+    "bootstrap": "^3.3.6"
+  }
+}
