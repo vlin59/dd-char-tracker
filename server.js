@@ -10,7 +10,8 @@ app.use(bodyParser.json())
 app.use(express.static('client/'))
 
 //database
-var dbport = process.env.MONGOLAB_URI || 'mongodb://localhost/dndchartracker'
+var dbport = 'mongodb://heroku_ws1qqp1f:dm4213mg608gm2ll9cmds2eo39@ds037607.mlab.com:37607/heroku_ws1qqp1f'
+ || 'mongodb://localhost/dndchartracker'
 mongoose.connect(dbport);
 
 var db = mongoose.connection;
