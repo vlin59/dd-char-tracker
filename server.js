@@ -21,7 +21,7 @@ db.once('open', function (){
 });
 
 //db schema
-var UserSchema = new mongoose.Schema({
+var CharSchema = new mongoose.Schema({
   name : String,
   align : String,
   race : String,
@@ -39,13 +39,7 @@ var UserSchema = new mongoose.Schema({
   dice: Number,
 });
 
-var User = mongoose.model('User', UserSchema);
-
-// User({user:"HELLO"}).save(function(err,data){
-//   if(!err){
-//     console.log("saved");
-//   }
-// })
+var Char = mongoose.model('Char', CharSchema);
 
 
 //routes
@@ -57,27 +51,98 @@ app.get('/', function (req,res){
 
 app.post('/', function (req,res){
   var name = req.body.name;
-  var align = req.body.align;
-  var race = req.body.race;
-  var classname = req.body.classname;
-  var gender = req.body.gender;
-  var exp = req.body.exp;
-  var level = req.body.level;
-  var str = req.body.str;
-  var dex = req.body.dex;
-  var con = req.body.con;
-  var inte = req.body.inte;
-  var wis = req.body.wis;
-  var cha = req.body.cha;
-  var eventname = req.body.eventname;
-  var dice = req.body.dice;
+  var align,
+      race,
+      classname,
+      gender,
+      exp,
+      level,
+      str,
+      dex,
+      con,
+      inte,
+      wis,
+      cha,
+      eventname,
+      dice;
 
-console.log(req.body)
+  Char.findOne({name:name},function (err, charfounddefault){
+    if (!err){
+      align = req.body.align || charfounddefault.align;
+      race = req.body.race || charfounddefault.race;
+      classname = req.body.classname || charfounddefault.classname;
+      gender = req.body.gender || charfounddefault.gender;
+      exp = req.body.exp || charfounddefault.exp;
+      level = req.body.level || charfounddefault.level;
+      str = req.body.str || charfounddefault.str;
+      dex = req.body.dex || charfounddefault.dex;
+      con = req.body.con || charfounddefault.con;
+      inte = req.body.inte || charfounddefault.inte;
+      wis = req.body.wis || charfounddefault.wis;
+      cha = req.body.cha || charfounddefault.cha;
+      eventname = req.body.eventname || '';
+      dice = req.body.dice || null;
+    }
+  });
 
-  // User.find({},function (err,user){
-  //   console.log(err, user);
-  //   res.send(user);
-  // })
+
+  Char.findOne({name:name},function (err,charfound){
+    if(charfound){
+      var id = charfound._id;
+      Char.findByIdAndUpdate({_id:id},
+        { align : align,
+        race : race,
+        classname : classname,
+        gender : gender,
+        exp : exp,
+        level : level,
+        str : str,
+        dex : dex,
+        con : con,
+        inte : inte,
+        wis : wis,
+        cha : cha,
+        eventname : eventname,
+        dice: dice}
+
+       ,function(err, charupdated){
+        if (!err){
+
+          Char.findById(id, function(err, updatedchar){
+                      console.log("charupdated")
+                      console.log(updatedchar)
+            res.send(updatedchar);
+          });
+        }
+        //res.send(charupdated);
+      })
+
+    } else {
+      //console.log("err")
+      //char is not found, create char
+      Char({
+        name : name,
+        align : align,
+        race : race,
+        classname : classname,
+        gender : gender,
+        exp : exp,
+        level : level,
+        str : str,
+        dex : dex,
+        con : con,
+        inte : inte,
+        wis : wis,
+        cha : cha,
+        eventname : eventname,
+        dice: dice})
+        .save(function(err,savedchar){
+          if(!err){
+            res.send(savedchar);
+          }
+        });
+    }
+  });
 
 });
 

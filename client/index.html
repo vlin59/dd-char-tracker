@@ -1,18 +1,21 @@
 <html ng-app="dndCharTracker">
  <!-- Body tag augmented with ngController directive  -->
   <head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
     <script src="lib/angular/angular.js"></script>
     <script src="app.js"></script>
   </head>
   <body>
     <div ng-controller="CharCtrl">
+    <div style="width:50%; float:left;">
       <form novalidate class="simple-form">
         Character Name:<input type="text" ng-model="user.name" /><br />
         Alignment: <input type="text" ng-model="user.align" /><br />
         Race: <input type="text" ng-model="user.race" /><br />
         Class: <input type="text" ng-model="user.class" /><br />
         Gender: <input type="radio" ng-model="user.gender" value="male" />Male
-        <input type="radio" ng-model="user.gender" value="female" />Female<br />
+        <input type="radio" ng-model="user.gender" value="female" />Female
+        <input type="radio" ng-model="user.gender" value="other" />Other<br />
         Experience: <input type="number" ng-model="user.exp" /><br />
         Level: <input type="number" ng-model="user.level" /><br />
         STR: <input type="number" ng-model="user.str" /><br />
@@ -40,7 +43,26 @@
             user.event,
             user.dice
           )" value="Save" />
-      </form>
     </div>
+    <div style="width:50%; float:right;">
+      <form novalidate class="simple-form">
+        <h5>Character Name: {{data.name}}</h5>
+        <h5> Alignment: {{data.align}}</h5>
+        <h5> Race: {{data.race}}</h5>
+        <h5> Class: {{data.classname}}</h5>
+        <h5> Gender: {{data.gender}}</h5>
+        <h5> Experience: {{data.exp}}</h5>
+        <h5> Level: {{data.level}}</h5>
+        <h5> STR: {{data.str}}</h5>
+        <h5> DEX: {{data.dex}}</h5>
+        <h5> CON: {{data.con}}</h5>
+        <h5> INT: {{data.inte}}</h5>
+        <h5> WIS: {{data.wis}}</h5>
+        <h5> CHA: {{data.cha}}</h5>
+        <h5> Event: {{data.eventname}}</h5>
+        <h5> Diceroll: {{data.dice}}</h5>
+      </div>
+      </div>
+    </span>
   </body>
 </html>

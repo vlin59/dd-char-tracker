@@ -1,7 +1,8 @@
 angular.module('dndCharTracker',[])
 
 
-.controller('CharCtrl', function ($scope,$http){
+.controller('CharCtrl', function ($scope, $http){
+  this.data;
   $scope.user = {};
   $scope.user.name = '';
   $scope.user.align = '';
@@ -16,8 +17,9 @@ angular.module('dndCharTracker',[])
   $scope.user.int = 0;
   $scope.user.wis = 0;
   $scope.user.cha = 0;
-  $scope.user.event = '';
+  $scope.user.event = ' ';
   $scope.user.dice = 0;
+  var that = this;
 
   $scope.save = function (name,align,race,classname,gender,exp,level,str,dex,con,inte,wis,cha,eventname,dice) {
     var data = {
@@ -45,7 +47,8 @@ angular.module('dndCharTracker',[])
       data: JSON.stringify(data)
       }).then(function successCallback(response) {
         //success
-        console.log(response);
+        $scope.data = response.data;
+
       }, function errorCallback(response) {
         //error
         console.log(response);
