@@ -56,23 +56,23 @@ app.get('/', function (req,res){
 });
 
 app.post('/', function (req,res){
-  var name = req.body.name,
-  var align = req.body.align,
-  var race = req.body.race,
-  var classname = req.body.classname,
-  var gender = req.body.gender,
-  var exp = req.body.exp,
-  var level = req.body.level,
-  var str = req.body.str,
-  var dex = req.body.dex,
-  var con = req.body.con,
-  var inte = req.body.inte,
-  var wis = req.body.wis,
-  var cha = req.body.cha,
-  var eventname = req.body.eventname,
-  var dice = req.body.dice,
+  var name = req.body.name;
+  var align = req.body.align;
+  var race = req.body.race;
+  var classname = req.body.classname;
+  var gender = req.body.gender;
+  var exp = req.body.exp;
+  var level = req.body.level;
+  var str = req.body.str;
+  var dex = req.body.dex;
+  var con = req.body.con;
+  var inte = req.body.inte;
+  var wis = req.body.wis;
+  var cha = req.body.cha;
+  var eventname = req.body.eventname;
+  var dice = req.body.dice;
 
-
+console.log(req.body)
 
   // User.find({},function (err,user){
   //   console.log(err, user);
