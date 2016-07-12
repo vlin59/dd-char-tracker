@@ -1,11 +1,46 @@
-<html ng-app>
+<html ng-app="dndCharTracker">
  <!-- Body tag augmented with ngController directive  -->
- <body ng-controller="MyController">
-   <input ng-model="foo" value="bar">
-   <!-- Button tag with ng-click directive, and
-          string expression 'buttonText'
-          wrapped in "{{ }}" markup -->
-   <button ng-click="changeFoo()">{{buttonText}}</button>
-   <script src="angular.js">
- </body>
+  <head>
+    <script src="lib/angular/angular.js"></script>
+    <script src="app.js"></script>
+  </head>
+  <body>
+    <div ng-controller="CharCtrl">
+      <form novalidate class="simple-form">
+        Character Name:<input type="text" ng-model="user.name" /><br />
+        Alignment: <input type="text" ng-model="user.align" /><br />
+        Race: <input type="text" ng-model="user.race" /><br />
+        Class: <input type="text" ng-model="user.class" /><br />
+        Gender: <input type="radio" ng-model="user.gender" value="male" />Male
+        <input type="radio" ng-model="user.gender" value="female" />Female<br />
+        Experience: <input type="number" ng-model="user.exp" /><br />
+        Level: <input type="number" ng-model="user.level" /><br />
+        STR: <input type="number" ng-model="user.str" /><br />
+        DEX: <input type="number" ng-model="user.dex" /><br />
+        CON: <input type="number" ng-model="user.con" /><br />
+        INT: <input type="number" ng-model="user.int" /><br />
+        WIS: <input type="number" ng-model="user.wis" /><br />
+        CHA: <input type="number" ng-model="user.cha" /><br />
+        Event: <input type="text" ng-model="user.event" /><br />
+        Diceroll: <input type="number" ng-model="user.dice" /><br />
+        <input type="submit" ng-click="save(
+            user.name,
+            user.align,
+            user.race,
+            user.class,
+            user.gender,
+            user.exp,
+            user.level,
+            user.str,
+            user.dex,
+            user.con,
+            user.int,
+            user.wis,
+            user.cha,
+            user.event,
+            user.dice
+          )" value="Save" />
+      </form>
+    </div>
+  </body>
 </html>
