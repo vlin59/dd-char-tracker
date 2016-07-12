@@ -10,7 +10,7 @@ app.use(bodyParser.json())
 app.use(express.static('client/'))
 
 //database
-var dbport = process.env.MONGOLABS || 'mongodb://localhost/dndchartracker'
+var dbport = process.env.MONGOLABS
 mongoose.connect(dbport);
 
 var db = mongoose.connection;
